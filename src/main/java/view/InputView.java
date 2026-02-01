@@ -15,7 +15,7 @@ public class InputView {
 		return input;
 	}
 
-	private void validateRestart(String input) {
+	void validateRestart(String input) {
 		if (!input.equals("1") && !input.equals("2")) {
 			throw new IllegalArgumentException("1 또는 2만 입력 가능합니다.");
 		}
