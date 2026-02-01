@@ -11,9 +11,6 @@ public class BaseballGameController {
 	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
 
-	public BaseballGameController() {
-	}
-
 	public void start() {
 		outputView.printStartMessage();
 		BaseballNumbers computer = new BaseballNumbers(RandomNumberGenerator.generate());
