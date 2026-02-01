@@ -21,8 +21,8 @@ public class BaseballNumbers {
 		List<Integer> numbers = new ArrayList<>();
 
 		for (char c : input.toCharArray()) {
+			validateNumeric(c);
 			int number = Character.getNumericValue(c);
-			validateNumeric(number);
 			validateNumberRange(number);
 
 			numbers.add(number);
@@ -44,8 +44,10 @@ public class BaseballNumbers {
 		if (numbers.length() != 3) throw new IllegalArgumentException("입력은 세 글자만 가능합니다.");
 	}
 
-	private void validateNumeric(int numbers) {
-		if (numbers == -1) throw new IllegalArgumentException("숫자가 아닌 문자가 포함되었습니다.");
+	private void validateNumeric(char c) {
+		if (!Character.isDigit(c)) {
+			throw new IllegalArgumentException("숫자 이외의 문자는 입력할 수 없습니다.");
+		}
 	}
 
 	private void validateNumberRange(int number) {
