@@ -1,32 +1,31 @@
 package service;
 
 import domain.BaseballNumbers;
-import utils.RandomNumberGenerator;
-import view.InputView;
-import view.OutputView;
+
 
 public class BaseballService {
 
-	private final InputView inputView;
-	private final OutputView outputView;
-
-	public BaseballService() {
-		inputView = new InputView();
-		outputView = new OutputView();
+	public String playRound(BaseballNumbers computer, BaseballNumbers player) {
+		int strike = computer.countStrike(player);
+		int ball = computer.countBall(player);
+		return getResultMessage(strike, ball);
 	}
 
-	public void playGame() {
-		outputView.printStartMessage();
-
-		BaseballNumbers computer = new BaseballNumbers(RandomNumberGenerator.generate());
-		boolean isMatch = false;
-
-		while (!isMatch) {
-			try {
-				BaseballNumbers player = new BaseballNumbers(inputView.readInput());
-			} catch (IllegalArgumentException e) {
-				outputView.printErrorMessage(e.getMessage());
-			}
+	public String getResultMessage(int strike, int ball) {
+		if (strike == 0 && ball == 0) {
+			return "낫싱";
 		}
+		return buildStrikeBallMessage(strike, ball).trim();
+	}
+
+	private String buildStrikeBallMessage(int strike, int ball) {
+		String message = "";
+		if (ball > 0) {
+			message += ball + "볼 ";
+		}
+		if (strike > 0) {
+			message += strike + "스트라이크";
+		}
+		return message;
 	}
 }
