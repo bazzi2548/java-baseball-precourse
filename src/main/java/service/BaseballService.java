@@ -19,13 +19,13 @@ public class BaseballService {
 	}
 
 	private String buildStrikeBallMessage(int strike, int ball) {
-		String message = "";
+		StringBuilder message = new StringBuilder();
 		if (ball > 0) {
-			message += ball + "볼 ";
+			message.append(ball).append("볼 ");
 		}
 		if (strike > 0) {
-			message += strike + "스트라이크";
+			message.append(strike).append("스트라이크");
 		}
-		return message;
+		return message.toString();
 	}
 }
